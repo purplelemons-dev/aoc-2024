@@ -1,4 +1,19 @@
 def pt1(input: list[str]):
+    total = 0
+
+    for i, j in zip(sortLines(input)):
+        distance = abs(i - j)
+        total += distance
+
+    return total
+
+
+def doLine(line: str):
+    x, y = line.split()
+    return int(x), int(y)
+
+
+def sortLines(input: list[str]) -> tuple[list[int], list[int]]:
     left, right = [], []
     for line in input:
         x, y = doLine(line)
@@ -9,15 +24,4 @@ def pt1(input: list[str]):
     left.sort()
     right.sort()
 
-    total = 0
-
-    for i, j in zip(left, right):
-        distance = abs(i - j)
-        total += distance
-
-    return total
-
-
-def doLine(line: str):
-    x, y = line.split()
-    return int(x), int(y)
+    return left, right
